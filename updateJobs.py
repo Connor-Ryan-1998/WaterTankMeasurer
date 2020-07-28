@@ -1,19 +1,16 @@
 import databaseFunctions as df
 import datetime
-import pandas as pd
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly.express as px
-import plotly.graph_objs as go
-import schedule
-import time
+import serial #Import Serial Library
 
-def retrieveData():
-    print('finally some good fucking food')
-schedule.every(10).seconds.do(retrieveData)
+#Create Serial port object called arduinoSerialData
+arduinoSerialData = serial.Serial('com3',9600) 
 
-
-while 1:
-    schedule.run_pending()
-    time.sleep(1)
+#Connection String
+collection = df.Database(database="WaterTankIOT", collection="dbo.waterTankReadings").connectionString()
+while True:
+    if (arduinoSerialData.inWaiting()>0):
+        myData = arduinoSerialData.readline()
+        currentDateTime = datetime.datetime.now()
+        reading = [int(s) for s in myData.split() if s.isdigit()]
+        df.Database(readingDateTime=currentDateTime,reading=reading[0],tank="Tank01",collection = collection).insertReadingData()
+        

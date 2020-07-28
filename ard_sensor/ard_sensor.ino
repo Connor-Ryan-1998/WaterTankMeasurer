@@ -30,9 +30,8 @@ void loop() {
   distance = duration*0.034/2;
   
   // Print the distance on the Serial Monitor (Ctrl+Shift+M):
-  Serial.print("Distance = ");
   Serial.print(distance);
   Serial.println(" cm");
   
-  delay(100);
+  delay(10000);
 }
