@@ -1,2 +1,2 @@
 # WaterTankMeasurer
-Use Ardunio to measure distance 
+Use Ardunio to measure volume of water tank

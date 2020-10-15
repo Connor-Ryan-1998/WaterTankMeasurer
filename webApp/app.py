@@ -12,7 +12,7 @@ import socket
 ##Server Configuration
 host = socket.gethostbyname(socket.gethostname())
 currentDateTime = datetime.datetime.now()
-lookBackDateTime = datetime.timedelta(30)
+lookBackDateTime = datetime.timedelta(1900)
 reviewPeriod = currentDateTime - lookBackDateTime
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -25,11 +25,10 @@ dataframe = df.Database(tank= "Tank01", readingDateTime={"$gt":reviewPeriod},col
 #(3.14*(2175/2)^2*1750)*1e-6 volume calc
 dimensions = df.Tank(tank="tank01",collection = collection2).tankDimensions()
 
-
-for x in dataframe['reading']:
-    dataframe['percentFull'] = float(df.Tank(tank="tank01",collection=collection,height=dimensions['height'],diameter=x,reading=100).calcPercentFull())
-
 print(dataframe)
+# for x in dataframe['reading']:
+#     dataframe['percentFull'] = float(df.Tank(tank="tank01",collection=collection,height=dimensions['height'],diameter=x,reading=100).calcPercentFull())
+
 
 
 
