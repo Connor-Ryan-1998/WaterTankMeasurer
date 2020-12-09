@@ -1,0 +1,4 @@
+1. Ensure Code is Open and running in background
+2. Open old data displaying with dash
+3. Pull Up MongoDB to dispaly database and tables.
+2. Open Powerpoint to discuss
